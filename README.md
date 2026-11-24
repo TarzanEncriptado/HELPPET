@@ -38,6 +38,7 @@ O projeto busca aproximar **ensino, pesquisa e extensão**, seguindo a filosofia
 O projeto é mantido pelo **PET Fronteira – UFMS (Campus Ponta Porã)**, sob a tutoria do(a) **Prof. Reginaldo**.  
 
 👥 **Desenvolvedores:**  
+- Reynaldo Abel Carballar da Costa
 - Joice Beatriz Paim Sanchez 
 - Roberto
 - Lucas 
