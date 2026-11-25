@@ -23,25 +23,21 @@ O projeto busca aproximar **ensino, pesquisa e extensão**, seguindo a filosofia
 
 ---
 
-## 📂 Estrutura do projeto
-   ```bash
-   help-pet/
-   │── index.html # Página inicial
-   │── css/# Estilos
-   │── js/ # Scripts
-   │── images/ # Imagens e ícones
-   │── docs/ # Documentação e materiais
-   └── README.md # Este arquivo
-   ```
+## 📂 Estrutura atual
+
+- `healthpet-final/` — aplicação frontend Vue/Vuetify, com páginas e recursos da interface.
+- `healthpet-api/` — API NestJS e persistência MySQL via Prisma.
+- `.github/workflows/` — automações de validação da API e publicação do frontend.
+
+## HEALTHPET
+
+- `healthpet-final/` — frontend Vue/Vuetify revisado.
+- `healthpet-api/` — API NestJS com autenticação JWT, papéis de usuário e persistência MySQL via Prisma.
+
+Para executar a API localmente, siga `healthpet-api/README.md`; para o frontend, siga `healthpet-final/README.md`. O GitHub Pages hospeda somente o frontend: login e administração online exigem que a API e o banco sejam hospedados separadamente.
 
 ## 👨‍👩‍👧‍👦 Equipe PET Fronteira
-O projeto é mantido pelo **PET Fronteira – UFMS (Campus Ponta Porã)**, sob a tutoria do(a) **Prof. Reginaldo**.  
-
-👥 **Desenvolvedores:**  
-- Reynaldo Abel Carballar da Costa
-- Joice Beatriz Paim Sanchez 
-- Roberto
-- Lucas 
+O projeto é mantido pelo grupo **PET Fronteira – UFMS (Campus Ponta Porã)**.
 
 ---
 

@@ -1,0 +1,11 @@
+node_modules
+dist
+.env
+.env.*
+!.env.example
+coverage
+*.log
+*.tsbuildinfo
+/prisma/seed.js
+/prisma/seed.js.map
+/prisma/seed.d.ts

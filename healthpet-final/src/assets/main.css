@@ -1,0 +1,36 @@
+@import './base.css';
+
+/*
+  REMOVIDO: max-width, margin e padding foram removidos do #app.
+  MOTIVO: O Vuetify precisa controlar 100% do espaço da tela.
+  A limitação de largura e o espaçamento devem ser feitos dentro
+  dos componentes com <v-container> e <v-col>.
+*/
+#app {
+  font-weight: normal;
+}
+
+/*
+  MANTIDO: Estilos de links e cores.
+  Isto define a aparência dos seus links e não interfere no layout.
+*/
+a,
+.green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+  padding: 3px;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
+/*
+  REMOVIDO: O bloco @media (min-width: 1024px) foi inteiramente removido.
+  MOTIVO: As regras 'display: flex' no body e 'display: grid' no #app
+  criavam um sistema de layout próprio que conflitava DIRETAMENTE
+  com o sistema de layout do Vuetify, causando a quebra dos componentes.
+*/

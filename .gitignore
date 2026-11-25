@@ -14,3 +14,8 @@ resources/.arch-internal-preview.css
 .arch-internal-preview.css
 node_modules
 .package-lock.json
+
+# Local environment files can contain secrets.
+.env
+.env.*
+!.env.example

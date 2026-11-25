@@ -1,0 +1,50 @@
+name: HEALTHPET API checks
+
+on:
+  push:
+    branches:
+      - main
+      - TarzanEncriptado-patch-1
+    paths:
+      - 'healthpet-api/**'
+      - '.github/workflows/healthpet-api.yml'
+  pull_request:
+    paths:
+      - 'healthpet-api/**'
+      - '.github/workflows/healthpet-api.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: healthpet-api
+    env:
+      DATABASE_URL: mysql://healthpet:healthpet_local_password@localhost:3306/healthpet
+      JWT_SECRET: test-secret-that-is-long-enough-for-validation
+      FRONTEND_ORIGIN: http://localhost:5173
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: healthpet-api/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Prisma client
+        run: npm run prisma:generate
+
+      - name: Run unit tests
+        run: npm test
+
+      - name: Build API
+        run: npm run build
