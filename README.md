@@ -23,16 +23,11 @@ O projeto busca aproximar **ensino, pesquisa e extensão**, seguindo a filosofia
 
 ---
 
-## 📂 Estrutura do projeto
-   ```bash
-   help-pet/
-   │── index.html # Página inicial
-   │── css/# Estilos
-   │── js/ # Scripts
-   │── images/ # Imagens e ícones
-   │── docs/ # Documentação e materiais
-   └── README.md # Este arquivo
-   ```
+## 📂 Estrutura atual
+
+- `healthpet-final/` — aplicação frontend Vue/Vuetify, com páginas e recursos da interface.
+- `healthpet-api/` — API NestJS e persistência MySQL via Prisma.
+- `.github/workflows/` — automações de validação da API e publicação do frontend.
 
 ## HEALTHPET
 
