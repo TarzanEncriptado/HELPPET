@@ -42,13 +42,7 @@ O projeto busca aproximar **ensino, pesquisa e extensão**, seguindo a filosofia
 Para executar a API localmente, siga `healthpet-api/README.md`; para o frontend, siga `healthpet-final/README.md`. O GitHub Pages hospeda somente o frontend: login e administração online exigem que a API e o banco sejam hospedados separadamente.
 
 ## 👨‍👩‍👧‍👦 Equipe PET Fronteira
-O projeto é mantido pelo **PET Fronteira – UFMS (Campus Ponta Porã)**, sob a tutoria do(a) **Prof. Reginaldo**.  
-
-👥 **Desenvolvedores:**  
-- Reynaldo Abel Carballar da Costa
-- Joice Beatriz Paim Sanchez 
-- Roberto
-- Lucas 
+O projeto é mantido pelo grupo **PET Fronteira – UFMS (Campus Ponta Porã)**.
 
 ---
 

@@ -7,7 +7,7 @@ services:
       MYSQL_PASSWORD: healthpet_local_password
       MYSQL_ROOT_PASSWORD: local_root_password_only
     ports:
-      - '3306:3306'
+      - '127.0.0.1:3306:3306'
     volumes:
       - healthpet-mysql:/var/lib/mysql
     healthcheck:
