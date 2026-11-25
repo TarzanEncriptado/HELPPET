@@ -10,10 +10,9 @@ const socialLinks = [
 </script>
 
 <template>
-  <AppFooter app color="#242742ff" class="d-flex flex-column pa-0">
-    <v-footer app color="#242742ff" class="d-flex flex-column pa-0">
-      <v-container>
-        <v-row justify="space-between" class="pa-4">
+  <v-footer app color="#242742ff" class="d-flex flex-column pa-0 healthpet-footer">
+      <v-container class="footer-container">
+        <v-row justify="space-between" class="footer-row">
           <v-col cols="12" md="4" class="text-md-left text-center">
             <h4 class="text-h6 font-weight-bold mb-2">PET Fronteira</h4>
             <div class="d-flex align-center justify-center justify-md-start mb-1">
@@ -51,8 +50,7 @@ const socialLinks = [
         <strong>© {{ new Date().getFullYear() }} — PET Fronteira.</strong> Todos os direitos
         reservados.
       </div>
-    </v-footer>
-  </AppFooter>
+  </v-footer>
 </template>
 
 <style scoped>
@@ -73,21 +71,48 @@ a:hover {
 }
 
 @media (max-width: 600px) {
-  .v-footer {
-    font-size: 0.82rem;
+  .healthpet-footer {
+    font-size: 0.76rem;
   }
 
-  .v-footer :deep(.v-container) {
-    padding: 12px 16px;
+  .footer-container {
+    max-height: none;
+    padding: 8px 12px 6px !important;
   }
 
-  .v-footer :deep(.v-row) {
-    row-gap: 18px;
+  .footer-row {
+    row-gap: 4px !important;
+    padding: 0 !important;
   }
 
-  .v-footer :deep(.v-btn) {
-    width: 44px;
-    height: 44px;
+  .footer-row :deep(.v-col) {
+    padding: 2px 8px !important;
+  }
+
+  .footer-row h4 {
+    font-size: 0.96rem !important;
+    margin-bottom: 2px !important;
+  }
+
+  .footer-row :deep(.v-icon) {
+    font-size: 16px !important;
+    width: 16px;
+    height: 16px;
+  }
+
+  .footer-row :deep(.v-btn) {
+    width: 36px;
+    height: 36px;
+  }
+
+  .footer-row :deep(.v-btn .v-icon) {
+    font-size: 20px !important;
+  }
+
+  .healthpet-footer > div:last-child {
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+    font-size: 0.72rem;
   }
 }
 </style>
