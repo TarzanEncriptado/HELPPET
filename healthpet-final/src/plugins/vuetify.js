@@ -9,10 +9,10 @@ import * as directives from 'vuetify/directives'
 const myCustomDarkTheme = {
   dark: true,
   colors: {
-    background: '#242742ff', // Fundo principal bem escuro
-    surface: '#20233E', // Cor dos cards e superfícies
-    primary: '#d3daffff', // Azul principal para botões e links
-    secondary: '#3498caff',
+    background: '#111424',
+    surface: '#181b33',
+    primary: '#a8a1ff',
+    secondary: '#62d7b5',
     error: '#FF5252',
     info: '#2196F3',
     success: '#4CAF50',
