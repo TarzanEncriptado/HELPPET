@@ -1,0 +1,44 @@
+# HELP PET
+
+Plataforma web desenvolvida para otimizar a gestão interna, a integração e o acompanhamento das atividades dos grupos do **Programa de Educação Tutorial (PET)** da Universidade Federal de Mato Grosso do Sul (UFMS).
+
+## Sobre o Projeto
+
+O sistema centraliza fluxos administrativos e operacionais de grupos tutoriais, facilitando o controle de projetos, membros e rotinas acadêmicas de petianos e tutores.
+
+**Reconhecimento Acadêmico:**  
+Trabalho apresentado como ação de extensão sob o título *"HELP PET: Plataforma Digital para Integração e Apoio a Petianos"* durante o **Integra UFMS 2025** (20/10/2025 a 25/10/2025).
+
+## Tecnologias Utilizadas
+
+* **Frontend:** Vue.js, Vuetify, Pinia  
+* **Backend:** NestJS, Prisma ORM  
+* **Banco de Dados:** MySQL
+
+## Estrutura do Repositório
+
+* `/hellpet` — Código-fonte da aplicação  
+* `.gitlab-ci.yml` — Configuração de pipeline CI/CD
+
+## Como Executar Localmente
+
+1. Clone o repositório:
+```bash
+git clone https://github.com/TarzanEncriptado/HELPPET.git
+cd HELPPET
+```
+2. Instale as dependências:
+```bash
+npm install
+```
+3. Configure as variáveis de ambiente criando um arquivo `.env` com as informações de conexão do banco de dados e outras chaves necessárias.
+4. Inicie o backend:
+```bash
+npm run start:dev
+```
+5. Inicie o frontend:
+```bash
+npm run dev
+```
+
+Após esses passos, a aplicação estará disponível localmente, geralmente em `http://localhost:3000` para o frontend.
