@@ -1,20 +1,16 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { useUserStore } from '@/stores/userStore'
-
-// --- VARIÁVEL DE CONTROLE ---
-// true  = Usa a simulação com Pinia (userStore)
-// false = Tenta usar a chamada real com fetch()
-const simularBackend = true
-// --------------------------
+import { useAuthStore } from '@/stores/authStore'
 
 const nome = ref('')
 const email = ref('')
 const senha = ref('')
 const formValido = ref(false)
+const loading = ref(false)
+const erroCadastro = ref(null)
 const router = useRouter()
-const userStore = useUserStore()
+const authStore = useAuthStore()
 
 async function cadastrar() {
   if (!formValido.value) return
@@ -25,36 +21,15 @@ async function cadastrar() {
     senha: senha.value,
   }
 
+  loading.value = true
+  erroCadastro.value = null
   try {
-    if (simularBackend) {
-      // --- LÓGICA DE SIMULAÇÃO (PINIA) ---
-      console.log('Modo de simulação ativado. Cadastrando na userStore...')
-      userStore.cadastrarUsuario(payload)
-      alert('Usuário cadastrado com sucesso! (simulação com Pinia)')
-      router.push('/login')
-    } else {
-      // --- LÓGICA DE API REAL---
-      console.log('Modo de API real ativado. Tentando conectar ao backend...')
-      const response = await fetch('URL_DO_BACKEND_AQUI', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      })
-
-      const data = await response.json()
-
-      if (!response.ok) {
-        alert(`Erro do servidor: ${data.erro || 'Ocorreu um problema.'}`)
-      } else {
-        alert('Usuário cadastrado com sucesso!')
-        router.push('/login')
-      }
-    }
+    await authStore.register(payload)
+    router.push('/login')
   } catch (error) {
-    console.error('Erro durante o cadastro:', error)
-    alert('Não foi possível concluir o cadastro.')
+    erroCadastro.value = error.message || 'Não foi possível concluir o cadastro.'
+  } finally {
+    loading.value = false
   }
 }
 
@@ -79,6 +54,9 @@ const rules = {
             </v-card-title>
 
             <v-card-text>
+              <v-alert v-if="erroCadastro" type="error" class="mb-4">
+                {{ erroCadastro }}
+              </v-alert>
               <v-form v-model="formValido" @submit.prevent="cadastrar">
                 <v-text-field
                   v-model="nome"
@@ -101,12 +79,13 @@ const rules = {
                   v-model="senha"
                   label="Senha"
                   type="password"
-                  :rules="[rules.required, rules.minLength(8)]"
+                  :rules="[rules.required, rules.minLength(12)]"
                   variant="outlined"
                   class="mb-2"
                 ></v-text-field>
                 <v-btn
-                  :disabled="!formValido"
+                  :disabled="!formValido || loading"
+                  :loading="loading"
                   block
                   type="submit"
                   size="large"

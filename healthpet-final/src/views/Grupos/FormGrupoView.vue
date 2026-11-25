@@ -49,6 +49,9 @@ function handleSubmit() {
     <h1 class="text-h4 mb-4">{{ isEditMode ? 'Editar Grupo' : 'Novo Grupo' }}</h1>
     <v-card>
       <v-card-text>
+        <v-alert v-if="userStore.erro" type="error" class="mb-4">
+          {{ userStore.erro }}
+        </v-alert>
         <v-form @submit.prevent="handleSubmit">
           <v-text-field
             v-model="form.name"

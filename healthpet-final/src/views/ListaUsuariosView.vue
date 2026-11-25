@@ -11,7 +11,7 @@ const { usuarios, loading, erro } = storeToRefs(userStore)
 const dialogExcluir = ref(false)
 const usuarioParaExcluir = ref(null)
 
-// 3. Funções que controlam o diálogo
+// Funções que controlam o diálogo
 function abrirDialogExcluir(usuario) {
   usuarioParaExcluir.value = usuario
   dialogExcluir.value = true
@@ -22,14 +22,18 @@ function fecharDialogExcluir() {
   usuarioParaExcluir.value = null
 }
 
-function confirmarExclusao() {
+async function confirmarExclusao() {
   if (usuarioParaExcluir.value) {
-    userStore.excluirUsuario(usuarioParaExcluir.value.id)
+    try {
+      await userStore.excluirUsuario(usuarioParaExcluir.value.id)
+      fecharDialogExcluir()
+    } catch {
+      fecharDialogExcluir()
+    }
   }
-  fecharDialogExcluir()
 }
 
-// 4. Busca os dados iniciais quando o componente é montado
+// Busca os dados iniciais quando o componente é montado.
 onMounted(() => {
   if (userStore.usuarios.length === 0) {
     userStore.buscarUsuarios()
@@ -40,7 +44,7 @@ onMounted(() => {
 <template>
   <v-container>
     <v-card class="v-responsive">
-      <v-card-title>Lista de Usuários (Vindo do Pinia)</v-card-title>
+      <v-card-title>Usuários</v-card-title>
 
       <div v-if="loading" class="text-center pa-4">
         <v-progress-circular indeterminate color="primary"></v-progress-circular>

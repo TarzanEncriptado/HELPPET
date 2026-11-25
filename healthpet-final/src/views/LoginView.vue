@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/authStore'
 
 const email = ref('')
@@ -10,6 +10,7 @@ const loading = ref(false)
 const erroLogin = ref(null)
 
 const router = useRouter()
+const route = useRoute()
 const authStore = useAuthStore()
 
 async function login() {
@@ -19,13 +20,14 @@ async function login() {
   erroLogin.value = null
 
   try {
-    // Simula um delay de rede
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-
     await authStore.login({ email: email.value, senha: senha.value })
 
-    alert('Login efetuado com sucesso! (simulação com Pinia)')
-    router.push('/') // Redireciona para a home após o login
+    const redirect = route.query.redirect
+    const destination =
+      typeof redirect === 'string' && redirect.startsWith('/') && !redirect.startsWith('//')
+        ? redirect
+        : '/'
+    router.push(destination)
   } catch (error) {
     erroLogin.value = error.message
   } finally {
@@ -52,8 +54,8 @@ const rules = {
               <span class="text-3xl font-bold text-blue-600">Login</span>
             </v-card-title>
 
-            <v-alert v-if="erroLogin" type="error" dense text class="mx-4 mb-n2">
-              {{ erroLogin }}
+            <v-alert v-if="erroLogin || authStore.sessionError" type="error" dense text class="mx-4 mb-n2">
+              {{ erroLogin || authStore.sessionError }}
             </v-alert>
 
             <v-card-text>

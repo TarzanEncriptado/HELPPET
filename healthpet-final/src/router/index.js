@@ -107,20 +107,17 @@ const router = createRouter({
 })
 
 // GUARDA DE NAVEGAÇÃO GLOBAL
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to) => {
   const authStore = useAuthStore()
+  await authStore.restoreSession()
 
   if (to.meta.requiresAuth && !authStore.isAuthenticated) {
-    next({ name: 'login', query: { redirect: to.fullPath } })
-    return
+    return { name: 'login', query: { redirect: to.fullPath } }
   }
 
   if (to.meta.requiresAdmin && !authStore.isAdmin) {
-    next({ name: 'home' })
-    return
+    return { name: 'home' }
   }
-
-  next()
 })
 
 export default router

@@ -1,9 +1,11 @@
 <script setup>
 import { ref, onMounted } from 'vue'
+import { storeToRefs } from 'pinia'
 import { useRoute, useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/userStore'
 
 const userStore = useUserStore()
+const { erro } = storeToRefs(userStore)
 const route = useRoute()
 const router = useRouter()
 const usuarioId = route.params.id
@@ -11,7 +13,11 @@ const formValido = ref(false)
 const nome = ref('')
 const email = ref('')
 
-onMounted(() => {
+onMounted(async () => {
+  if (userStore.usuarios.length === 0) {
+    await userStore.buscarUsuarios()
+  }
+
   const usuario = userStore.getUserById(usuarioId)
   if (usuario) {
     nome.value = usuario.nome
@@ -19,15 +25,18 @@ onMounted(() => {
   }
 })
 
-function salvarAlteracoes() {
+async function salvarAlteracoes() {
   if (!formValido.value) return
   const payload = {
     nome: nome.value,
     email: email.value,
   }
-  userStore.atualizarUsuario(usuarioId, payload)
-  alert('Alterações salvas com sucesso!')
-  router.push('/usuarios')
+  try {
+    await userStore.atualizarUsuario(usuarioId, payload)
+    router.push('/usuarios')
+  } catch {
+    // The store exposes the API error in the form.
+  }
 }
 
 const rules = {
@@ -45,7 +54,8 @@ const rules = {
             <span>Editando Usuário #{{ usuarioId }}</span>
           </v-card-title>
           <v-card-text>
-            <v-form v-model="formValido">
+            <v-alert v-if="erro" type="error" class="mb-4">{{ erro }}</v-alert>
+            <v-form v-model="formValido" @submit.prevent="salvarAlteracoes">
               <v-text-field
                 v-model="nome"
                 label="Nome Completo"
@@ -62,8 +72,8 @@ const rules = {
                 class="mb-2"
               ></v-text-field>
               <v-btn
-                @click="salvarAlteracoes"
                 :disabled="!formValido"
+                type="submit"
                 block
                 size="large"
                 color="success"

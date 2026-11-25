@@ -14,14 +14,18 @@ const userStore = useUserStore()
 const dialog = ref(false)
 const selectedActivity = ref(null)
 const selectedUsers = ref([])
+const userLoadError = ref(null)
 // -----------------------------------------
 
 const selectedProjectId = ref(null)
 
-onMounted(() => {
+onMounted(async () => {
   activityStore.fetchActivities()
   projectStore.fetchProjects()
-  userStore.buscarUsuarios()
+  if (authStore.isAdmin) {
+    await userStore.buscarUsuarios()
+    userLoadError.value = userStore.erro
+  }
 })
 
 const filteredActivities = computed(() => {
@@ -34,7 +38,7 @@ const filteredActivities = computed(() => {
 // Função para pegar o nome do usuário pelo ID
 function getUserNameById(id) {
   const user = userStore.usuarios.find((u) => u.id === id)
-  return user ? user.nome : 'Desconhecido'
+  return user ? user.nome : `Membro ${id}`
 }
 
 // Função para abrir o modal
@@ -61,6 +65,7 @@ function formatDate(date) {
 
 <template>
   <v-container>
+    <v-alert v-if="userLoadError" type="error" class="mb-4">{{ userLoadError }}</v-alert>
     <div class="d-flex justify-space-between align-center mb-4 flex-wrap">
       <h1 class="text-h4">Gerenciamento de Atividades</h1>
       <v-btn v-if="authStore.isAdmin" color="primary" to="/atividades/novo">Nova Atividade</v-btn>
