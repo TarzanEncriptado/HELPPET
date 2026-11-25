@@ -10,10 +10,10 @@ const socialLinks = [
 </script>
 
 <template>
-  <v-footer app color="#242742ff" class="d-flex flex-column pa-0 healthpet-footer">
+  <v-footer color="#242742ff" class="d-flex flex-column pa-0 healthpet-footer">
       <v-container class="footer-container">
-        <v-row justify="space-between" class="footer-row">
-          <v-col cols="12" md="4" class="text-md-left text-center">
+        <v-row justify="space-between" align="center" class="footer-row">
+          <v-col cols="12" sm="7" class="text-center text-sm-left">
             <h4 class="text-h6 font-weight-bold mb-2">PET Fronteira</h4>
             <div class="d-flex align-center justify-center justify-md-start mb-1">
               <v-icon start icon="mdi-map-marker-outline"></v-icon>
@@ -27,7 +27,7 @@ const socialLinks = [
             </div>
           </v-col>
 
-          <v-col cols="12" md="4" class="text-center">
+          <v-col cols="12" sm="5" class="text-center text-sm-right">
             <h4 class="text-subtitle-1 font-weight-bold mb-2">Siga-nos</h4>
             <div>
               <v-btn
