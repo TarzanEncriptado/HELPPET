@@ -71,4 +71,23 @@ a:hover {
 .v-footer {
   font-size: 0.9rem;
 }
+
+@media (max-width: 600px) {
+  .v-footer {
+    font-size: 0.82rem;
+  }
+
+  .v-footer :deep(.v-container) {
+    padding: 12px 16px;
+  }
+
+  .v-footer :deep(.v-row) {
+    row-gap: 18px;
+  }
+
+  .v-footer :deep(.v-btn) {
+    width: 44px;
+    height: 44px;
+  }
+}
 </style>

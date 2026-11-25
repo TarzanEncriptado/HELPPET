@@ -205,10 +205,11 @@ const focusItems = [
   .program-card{min-height:340px}
 }
 @media(max-width:700px){
-  .hero-panel{min-height:520px; grid-template-columns:1fr}
-  .hero-copy{align-self:end;padding:36px 24px}
-  .hero-copy h1{font-size:clamp(2.55rem,14vw,4rem)}
-  .hero-copy p{margin:20px 0 24px}
+  .hero-panel{min-height:460px; grid-template-columns:1fr; border-radius:20px}
+  .hero-copy{align-self:end;padding:28px 18px}
+  .hero-copy h1{font-size:clamp(2.25rem,11vw,3.25rem); line-height:1.02}
+  .hero-copy p{margin:16px 0 20px; font-size:.95rem; line-height:1.55}
+  .eyebrow{margin-bottom:18px}
   .hero-visual{position:absolute;width:180px;height:180px;min-height:0;right:-58px;top:-58px;opacity:.55}
   .hero-mark{width:100px;height:100px}
   .orbit-one{width:190px;height:190px}

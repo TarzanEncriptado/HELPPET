@@ -165,12 +165,14 @@ body,
 
 @media (max-width: 600px) {
   .main-content .v-container {
-    padding: 12px !important;
+    padding: 8px !important;
   }
 
   .header-button {
-    min-width: 0;
-    padding-inline: 10px;
+    min-width: 44px;
+    min-height: 44px;
+    padding-inline: 8px;
+    font-size: 0.78rem;
   }
 
   .user-greeting {
